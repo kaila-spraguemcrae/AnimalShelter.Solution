@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PortlandAnimalShelterApi.Entities;
+using PortlandAnimalShelterApi.Helpers;
 using PortlandAnimalShelterApi.Models;
 
 namespace PortlandAnimalShelterApi.Controllers
@@ -16,25 +19,37 @@ namespace PortlandAnimalShelterApi.Controllers
       _db = db;
     }
 
+    [Authorize]
     [HttpGet]
-    public ActionResult<IEnumerable<Cat>> GetAction()
+    public ActionResult<IEnumerable<Cat>> Get(string breed, string gender)
     {
-      return _db.Cats.ToList();
-    }
+      var query = _db.Cats.AsQueryable();
 
+      if (breed != null)
+      {
+        query = query.Where(entry => entry.Breed == breed);
+      }
+      if (gender != null)
+      {
+        query = query.Where(entry => entry.Gender == gender);
+      }
+      return query.ToList();
+    }
+    [Authorize(Roles = Role.Admin)]
     [HttpPost]
     public void Post([FromBody] Cat cat)
     {
       _db.Cats.Add(cat);
       _db.SaveChanges();
     }
-
+    [Authorize]
     [HttpGet("{id}")]
-    public ActionResult<Cat> GetAction(int id)
+    public ActionResult<Cat> Get(int id)
     {
       return _db.Cats.FirstOrDefault(entry => entry.CatId == id);
     }
 
+    [Authorize(Roles = Role.Admin)]
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Cat cat)
     {
@@ -42,7 +57,8 @@ namespace PortlandAnimalShelterApi.Controllers
       _db.Entry(cat).State = EntityState.Modified;
       _db.SaveChanges();
     }
-    
+
+    [Authorize(Roles = Role.Admin)]
     [HttpDelete("{id}")]
     public void Delete(int id)
     {

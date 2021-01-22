@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PortlandAnimalShelterApi.Entities;
+using PortlandAnimalShelterApi.Helpers;
 using PortlandAnimalShelterApi.Models;
 
 namespace PortlandAnimalShelterApi.Controllers
@@ -17,9 +20,19 @@ namespace PortlandAnimalShelterApi.Controllers
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Dog>> GetAction()
+    public ActionResult<IEnumerable<Dog>> Get(string breed, string gender)
     {
-      return _db.Dogs.ToList();
+      var query = _db.Dogs.AsQueryable();
+
+      if (breed != null)
+      {
+        query = query.Where(entry => entry.Breed == breed);
+      }
+      if (gender != null)
+      {
+        query = query.Where(entry => entry.Gender == gender);
+      }
+      return query.ToList();
     }
 
     [HttpPost]
@@ -30,7 +43,7 @@ namespace PortlandAnimalShelterApi.Controllers
     }
 
     [HttpGet("{id}")]
-    public ActionResult<Dog> GetAction(int id)
+    public ActionResult<Dog> Get(int id)
     {
       return _db.Dogs.FirstOrDefault(entry => entry.DogId == id);
     }

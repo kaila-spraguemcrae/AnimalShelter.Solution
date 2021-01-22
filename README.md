@@ -222,7 +222,7 @@ DELETE /api/dogs{id}
 
 ### Example Query
 
-`http://localhost:5004/api/dogs/?country=mix&gender=female`
+`http://localhost:5004/api/dogs/?breed=mix&gender=female`
 
 ### Sample JSON Response
 
