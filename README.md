@@ -29,8 +29,6 @@ This project uses the following technologies:
 
 - C# v7.3.0
 - .NET Core v2.2.0
-- ASP .NET MVC
-- ASP .NET Core Razor Pages
 - MySQL
 - MySQL Workbench
 - Entity Framework Core
@@ -162,7 +160,7 @@ The response will generate a bearer token. Copy this token for use when you crea
 
 # 🔚 Endpoints
 
-## 🐈 Cats
+## Cats 🐈
 
 Base URL : `http://localhost:5000`
 
@@ -202,7 +200,7 @@ DELETE /api/cats{id}
 }
 ```
 --------------------------
-## 🐕  Dogs
+##  Dogs 🐕
 
 Base URL : `http://localhost:5000`
 
