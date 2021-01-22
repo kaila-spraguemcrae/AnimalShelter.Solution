@@ -4,7 +4,8 @@
 </h1>
 
 <p align = "center">
-  This is a custom API that 
+  This is a custom API that is a database of cats and dogs which are adoptable. 
+
 </p>
 <p align = "center"> Created January 22, 2021 </p>
 
@@ -16,7 +17,7 @@
 
 ## 📖  Description
 
-This is a custom API that 
+This is a custom API that is a database of cats and dogs which are adoptable. 
 
 This is an independent project for Epicodus week 13 as part of the "Building and API" coursework. 
 
@@ -42,13 +43,12 @@ This project uses the following technologies:
 <details>
 <summary>Objectives</summary>
 
-| Story# | User Story | Complete |
+| obj# | Objectives | Complete |
 | :------------- | :------------- | :------------- |
-| 01 | As a user, I want to GET and POST reviews about travel destinations. | ✅ |
-| 02 | As a user, I want to GET reviews by country or city. | ✅  |
-| 03 | As a user, I want to see the most popular travel destinations by number of reviews or by overall rating. | ❌ |
-| 04 | As a user, I want to PUT and DELETE reviews, but only if I wrote them. | ❌ |
-| 05 | As a user, I want to look up random destinations just for fun. | ❌ |
+| 01 | Full CRUD functionality and successfully returns responses to API calls. | ✅ |
+| 02 | Application includes at least one of the further exploration objectives: authentication, versioning, pagination, Swagger documentation, or CORS. | ❌ |
+| 03 | Add a RANDOM endpoint that randomly returns a animal. | ❌ |
+| 04 | Add a second custom endpoint that accepts parameters. | ❌ |
 
 </details>
 
@@ -60,7 +60,7 @@ This project uses the following technologies:
 
 | Date | Error | Handled | Solution |
 | :------------- | :------------- | :------------- | :------------- |
-| 01.19.2021 | No known bugs at this time |  |  |
+| 01.22.2021 | No known bugs at this time |  |  |
 
 -------------------
 
@@ -79,12 +79,12 @@ This project uses the following technologies:
 
 #### To Download:
 
-Go to my GitHub repository here, [https://guthub.com/kaila.spraguemcrae/Travel.Solution](https://guthub.com/kaila.spraguemcrae/Travel.Solution), and click on the green 'Code' button to clone the repository, Open with GitHub Desktop OR Download the ZIP file
+Go to my GitHub repository here, [https://guthub.com/kaila.spraguemcrae/AnimalShelter.Solution](https://guthub.com/kaila.spraguemcrae/AnimalShelter.Solution), and click on the green 'Code' button to clone the repository, Open with GitHub Desktop OR Download the ZIP file
 
 #### To clone (my prefered method):
 
 1. Push the green 'Clone' button and copy the URL.
-2. Open Terminal or GitBash and input the command: `git clone https://github.com/kaila-spraguemcrae/Travel.Solution`
+2. Open Terminal or GitBash and input the command: `git clone https://github.com/kaila-spraguemcrae/AnimalShelter.Solution`
 3. To view the code, open the copied directory with Visual Studio Code or your preferred text editor by inputing the command `code .` in your terminal.
 
 ### 🧰 Database Setup Options
@@ -96,9 +96,18 @@ Go to my GitHub repository here, [https://guthub.com/kaila.spraguemcrae/Travel.S
 
 ```
 {
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Port=3306;database=kaila_spraguemcrae_french_bakery;uid=root;pwd=YOUR-PASSWORD-HERE;"
+  "AppSettings": {
+    "Secret": "THIS IS A SECRET AND IS USED TO CREATE A JSON WEB TOKEN FOR THIS ANIMAL SHELTER API"
+  }
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning"
     }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Port=3306;database=kaila_spraguemcrae_potland_animal_shelter;uid=root;pwd=epicodus;"
+  }
 }
 ```
 *Please note you will need to replace `YOUR-PASSWORD-HERE` with the password you created for your MySQL server.
@@ -106,14 +115,14 @@ Go to my GitHub repository here, [https://guthub.com/kaila.spraguemcrae/Travel.S
 
 #### Import Database using Entity Framework Core:
 
- - In the command line run ` cd Desktop/Travel.Solution/Travel` to navigate to the "FrechBakery" folder. 
+ - In the command line run ` cd Desktop/PortlandAnimalShelter.Solution/PortlandAnimalShelterApi` to navigate to the "FrechBakery" folder. 
  - Next, run `dotnet ef database update` to generate the database. You can confirm the database was created by checking MySQL workbench.
 
 *to make changed to the database you can run `dotnet ef migrations add <MigrationName>`
 
 #### Running/viewing application:
 
-1. Once you have opened the code in your preferred text editor you will need to navigate to the 'Travel.Solution/Travel' folder (`cd Travel`) in the command line and run `dotnet run` or `dotnet watch run`.
+1. Once you have opened the code in your preferred text editor you will need to navigate to the 'PortlandAnimalShelter.Solution/PortlandAnimalShelterApi' folder (`cd PortlandAnimalShelterApi`) in the command line and run `dotnet run` or `dotnet watch run`.
 2. At this point you should be able to click on the link to the local server's url path to view the compiled project. 
 
 --------------------------
@@ -127,7 +136,7 @@ In order to explore the endpoints of this API, we suggest that you use [Postman]
 
 ### "Admin" User Creation
 
-- Create a POST request to http://localhost:5004/api/users/authenticate
+- Create a POST request to http://localhost:5000/api/users/authenticate
 - Navigate to the "Body" tab of your request and select "Raw Data" from the offered options followed by "JSON" in the dropdown to the right of your selection. Enter the following code snippet into the body field
 ```
 {
@@ -140,7 +149,7 @@ The response will generate a bearer token. Copy this token for use when you crea
 ### "User" User Creation
 
 
-- Create a POST request to http://localhost:5004/api/users/authenticate
+- Create a POST request to http://localhost:5000/api/users/authenticate
 - Navigate to the "Body" tab of your request and select "Raw Data" from the offered options followed by "JSON" in the dropdown to the right of your selection. Enter the following code snippet into the body field
 ```
 {
@@ -151,49 +160,94 @@ The response will generate a bearer token. Copy this token for use when you crea
 The response will generate a bearer token. Copy this token for use when you create a new GET request. When creating a new request, navigate to the "Authorizations" tab. Select "Bearer Token" as the authorization type, and paste your copied token into the "Token" field. This token will authorize your GET requests only. 
 
 
-## Endpoints
+# 🔚 Endpoints
 
-Base URL : `http://localhost:5004`
+## 🐈 Cats
+
+Base URL : `http://localhost:5000`
 
 ### HTTP Request Structure
 
 ```
-GET /api/destination
-POST /api/destination
-GET /api/destination{id}
-PUT /api/destination{id}
-DELETE /api/destination{id}
+GET /api/cats
+POST /api/cats
+GET /api/cats{id}
+PUT /api/cats{id}
+DELETE /api/cats{id}
 ```
 ### Path Paramaters
 
 | Parameter | Type | Default | Required | Description |
 | :------------- | :------------- | :------------- | :------------- |:------------- |
-| cityname | string | none | false | Return matches by city name |
-| country | string | none | false | Return matches by country name |
-| rating | int | none | false | Return matches by rating number between 0-5 |
+| breed | string | none | false | Return matches by breed |
+| gender | string | none | false | Return matches by gender |
 
 ### Example Query
 
-`http://localhost:5004/api/destination/?country=japan&rating=5`
+`http://localhost:5004/api/cats/?country=short-hair%20domestic&gender=female`
 
 ### Sample JSON Response
 
 ```
 {
-  "Id": 6,
-  "CityName": "Tokyo",
-  "Country": "Japan",
-  "Review": "Best place ever!",
-  "Rating": 5
+"catid": 3
+"name": "Bulma" ,
+"adoptfee": 25.00,
+"breed": "Short-Hair Domestic",
+"gender": "Female",
+"color": "Grey, White",
+"age": 10,
+"weight": 11,
+"personality": "affectionate and social"
+}
+```
+--------------------------
+## 🐕  Dogs
+
+Base URL : `http://localhost:5000`
+
+### HTTP Request Structure
+
+```
+GET /api/dogs
+POST /api/dogs
+GET /api/dogs{id}
+PUT /api/dogs{id}
+DELETE /api/dogs{id}
+```
+### Path Paramaters
+
+| Parameter | Type | Default | Required | Description |
+| :------------- | :------------- | :------------- | :------------- |:------------- |
+| breed | string | none | false | Return matches by breed |
+| gender | string | none | false | Return matches by gender |
+
+### Example Query
+
+`http://localhost:5004/api/dogs/?country=mix&gender=female`
+
+### Sample JSON Response
+
+```
+{
+"dogid": 2
+"name": "Claira",
+"adoptFee": 25.0,
+"breed": "Mix",
+"gender": "Female",
+"color": "White, Black, Grey",
+"age": 6,
+"weight": 3,
+"personality": "loving, nervous"
 }
 ```
 --------------------------
 
 ## 📫 Support and contact details
 
-If you run into any problems or have any questions please contact us:
+If you run into any problems or have any questions please contact me:
 - [Kaila Sprague McRae](mailto:kaila.sprague@icloud.com)
-- [Zahnen Garner](mailto:zahnen@gmail.com) 
+
 
 ---------------------------
 
@@ -219,4 +273,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Copyright (c) 2020 Kaila Sprague McRae & Zahnen Garner
+Copyright (c) 2020 Kaila Sprague McRae
