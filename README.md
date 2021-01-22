@@ -58,7 +58,7 @@ This project uses the following technologies:
 
 | Date | Error | Handled | Solution |
 | :------------- | :------------- | :------------- | :------------- |
-| 01.22.2021 | No known bugs at this time |  |  |
+| 01.22.2021 | Random does not handle deleted db entries | ❌ |  |
 
 -------------------
 

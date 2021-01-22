@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -62,6 +64,14 @@ namespace PortlandAnimalShelterApi.Controllers
       var dogToDelete = _db.Dogs.FirstOrDefault(entry => entry.DogId == id);
       _db.Dogs.Remove(dogToDelete);
       _db.SaveChanges();
+    }
+    [HttpGet]
+    [Route("random")]
+    public ActionResult <Dog> Random()
+    {
+      Random random = new Random();
+      int randomDog = random.Next(_db.Dogs.ToList().Count());
+      return _db.Dogs.FirstOrDefault(entry => entry.DogId == randomDog);
     }
   }
 }
