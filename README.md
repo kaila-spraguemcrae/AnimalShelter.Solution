@@ -172,6 +172,7 @@ POST /api/cats
 GET /api/cats{id}
 PUT /api/cats{id}
 DELETE /api/cats{id}
+GET /api/cats/random
 ```
 ### Path Paramaters
 
@@ -212,6 +213,7 @@ POST /api/dogs
 GET /api/dogs{id}
 PUT /api/dogs{id}
 DELETE /api/dogs{id}
+GET /api/dogs/random
 ```
 ### Path Paramaters
 
@@ -237,6 +239,35 @@ DELETE /api/dogs{id}
 "age": 6,
 "weight": 3,
 "personality": "loving, nervous"
+}
+```
+--------------------------
+## Users
+
+Base URL : `http://localhost:5000`
+
+### HTTP Request Structure
+
+```
+GET /api/users
+POST /api/users/authenticate
+GET /api/users{id}
+```
+### Example Query
+
+`http://localhost:5004/api/users/1`
+
+### Sample JSON Response
+
+```
+{
+    "id": 1,
+    "firstName": "Admin",
+    "lastName": "User",
+    "username": "admin",
+    "password": null,
+    "role": "Admin",
+    "token": null
 }
 ```
 --------------------------

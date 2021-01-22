@@ -36,6 +36,7 @@ namespace PortlandAnimalShelterApi.Controllers
             return Ok(users);
         }
 
+
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
