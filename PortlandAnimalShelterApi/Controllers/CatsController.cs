@@ -66,5 +66,14 @@ namespace PortlandAnimalShelterApi.Controllers
       _db.Cats.Remove(catToDelete);
       _db.SaveChanges();
     }
+    [Authorize]
+    [HttpGet]
+    [Route("random")]
+    public ActionResult <Dog> Random()
+    {
+      Random random = new Random();
+      int randomDog = random.Next(_db.Dogs.ToList().Count());
+      return _db.Dogs.FirstOrDefault(entry => entry.DogId == randomDog);
+    }
   }
 }

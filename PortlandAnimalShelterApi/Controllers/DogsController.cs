@@ -20,7 +20,8 @@ namespace PortlandAnimalShelterApi.Controllers
     {
       _db = db;
     }
-
+    
+    [Authorize]
     [HttpGet]
     public ActionResult<IEnumerable<Dog>> Get(string breed, string gender)
     {
@@ -37,19 +38,21 @@ namespace PortlandAnimalShelterApi.Controllers
       return query.ToList();
     }
 
+    [Authorize(Roles = Role.Admin)]
     [HttpPost]
     public void Post([FromBody] Dog dog)
     {
       _db.Dogs.Add(dog);
       _db.SaveChanges();
     }
-
+    [Authorize]
     [HttpGet("{id}")]
     public ActionResult<Dog> Get(int id)
     {
       return _db.Dogs.FirstOrDefault(entry => entry.DogId == id);
     }
 
+    [Authorize(Roles = Role.Admin)]
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Dog dog)
     {
@@ -57,7 +60,8 @@ namespace PortlandAnimalShelterApi.Controllers
       _db.Entry(dog).State = EntityState.Modified;
       _db.SaveChanges();
     }
-    
+
+    [Authorize(Roles = Role.Admin)]
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
@@ -65,6 +69,8 @@ namespace PortlandAnimalShelterApi.Controllers
       _db.Dogs.Remove(dogToDelete);
       _db.SaveChanges();
     }
+
+    [Authorize]
     [HttpGet]
     [Route("random")]
     public ActionResult <Dog> Random()
