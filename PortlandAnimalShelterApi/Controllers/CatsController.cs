@@ -27,5 +27,11 @@ namespace PortlandAnimalShelterApi.Controllers
       _db.Cats.Add(cat);
       _db.SaveChanges();
     }
+
+    [HttpGet("{id}")]
+    public ActionResult<Cat> GetAction(int id)
+    {
+      return _db.Cats.FirstOrDefault(entry => entry.CatId == id);
+    }
   }
 }
