@@ -8,7 +8,7 @@ namespace PortlandAnimalShelterApi.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public int AdoptFee { get; set; }
+        public float AdoptFee { get; set; }
         [Required]
         public string Breed { get; set; }
         [Required]
@@ -18,7 +18,7 @@ namespace PortlandAnimalShelterApi.Models
         [Required]
         public int Age { get; set; }
         [Required]
-        public int Weight { get; set; }
+        public float Weight { get; set; }
         [Required]
         public string Personality { get; set; }
     }
