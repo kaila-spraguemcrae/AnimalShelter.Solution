@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PortlandAnimalShelterApi.Models;
 
 namespace PortlandAnimalShelterApi.Controllers
@@ -32,6 +33,14 @@ namespace PortlandAnimalShelterApi.Controllers
     public ActionResult<Cat> GetAction(int id)
     {
       return _db.Cats.FirstOrDefault(entry => entry.CatId == id);
+    }
+
+    [HttpPut("{id}")]
+    public void Put(int id, [FromBody] Cat cat)
+    {
+      cat.CatId = id;
+      _db.Entry(cat).State = EntityState.Modified;
+      _db.SaveChanges();
     }
   }
 }
