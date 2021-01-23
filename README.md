@@ -240,7 +240,7 @@ GET /api/dogs/random
 }
 ```
 --------------------------
-## Users
+## Users 👤
 
 Base URL : `http://localhost:5000`
 
