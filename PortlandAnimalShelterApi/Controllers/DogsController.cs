@@ -20,7 +20,7 @@ namespace PortlandAnimalShelterApi.Controllers
     {
       _db = db;
     }
-    
+
     [Authorize]
     [HttpGet]
     public ActionResult<IEnumerable<Dog>> Get(string breed, string gender)

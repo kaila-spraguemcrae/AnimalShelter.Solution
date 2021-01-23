@@ -59,6 +59,7 @@ This project uses the following technologies:
 | Date | Error | Handled | Solution |
 | :------------- | :------------- | :------------- | :------------- |
 | 01.22.2021 | Random does not handle deleted db entries | ❌ |  |
+| 01.22.2021 | Compiler error CS0246 occures when add `EnableCors` to Controller  | ❌ |  |
 
 -------------------
 
@@ -156,6 +157,10 @@ The response will generate a bearer token. Copy this token for use when you crea
 }
 ```
 The response will generate a bearer token. Copy this token for use when you create a new GET request. When creating a new request, navigate to the "Authorizations" tab. Select "Bearer Token" as the authorization type, and paste your copied token into the "Token" field. This token will authorize your GET requests only. 
+
+## Cors
+
+Cors has been enabled in this project. This means the _same-origin policy_ has been relaxed. For more information please view [Microsoft Documentation](https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-2.2#how-cors)
 
 
 # 🔚 Endpoints
