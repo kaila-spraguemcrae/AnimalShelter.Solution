@@ -36,25 +36,18 @@ This project uses the following technologies:
 
 -------------------
 
-## Specifications
-
-<details>
-<summary>Objectives</summary>
+## Objectives
 
 | obj# | Objectives | Complete |
 | :------------- | :------------- | :------------- |
 | 01 | Full CRUD functionality and successfully returns responses to API calls. | ✅ |
-| 02 | Application includes at least one of the further exploration objectives: authentication, versioning, pagination, Swagger documentation, or CORS. | ❌ |
-| 03 | Add a RANDOM endpoint that randomly returns a animal. | ❌ |
-| 04 | Add a second custom endpoint that accepts parameters. | ❌ |
-
-</details>
+| 02 | Application includes at least one of the further exploration objectives: authentication, versioning, pagination, Swagger documentation, or CORS. | ✅ |
+| 03 | Add a RANDOM endpoint that randomly returns a animal. | ✅ |
+| 04 | Add a second custom endpoint that accepts parameters. | ✅ |
 
 -------------------
 
 ## 🐛 Known Bugs
-
-
 
 | Date | Error | Handled | Solution |
 | :------------- | :------------- | :------------- | :------------- |
