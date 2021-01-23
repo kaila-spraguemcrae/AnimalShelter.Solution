@@ -52,7 +52,7 @@ This project uses the following technologies:
 | Date | Error | Handled | Solution |
 | :------------- | :------------- | :------------- | :------------- |
 | 01.22.2021 | Random does not handle deleted db entries | ❌ |  |
-| 01.22.2021 | Compiler error CS0246 occures when add `EnableCors` to Controller  | ❌ |  |
+| 01.22.2021 | Compiler error CS0246 occures when `EnableCors` is added to Controller  | ❌ |  |
 
 -------------------
 
