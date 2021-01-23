@@ -29,7 +29,7 @@ namespace PortlandAnimalShelterApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddCors();
+            services.AddCors();
             services.AddEntityFrameworkMySql()
                 .AddDbContext<PortlandAnimalShelterApiContext>(options => options
                 .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
@@ -74,10 +74,10 @@ namespace PortlandAnimalShelterApi
                 app.UseHsts();
             }
 
-            // app.UseCors(x => x
-            //     .AllowAnyOrigin()
-            //     .AllowAnyMethod()
-            //     .AllowAnyHeader());
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseAuthentication();
 
